@@ -1,6 +1,24 @@
 
 $(document).ready(function(){
 	
+	$("#current_pwd").keyup(function(){
+		var current_pwd = $("#current_pwd").val();
+		$.ajax({
+			type:'get',
+			url:'/admin/check-pwd',
+			data:{current_pwd:current_pwd},
+			success:function(resp){
+				if(resp=="false"){
+					$("#chkPwd").html("<font color='red'>Parola Doğru Değil!</font>");
+				}else if(resp=="true"){
+					$("#chkPwd").html("<font color='green'>Parola Doğru!</font>");
+				}
+			},error:function(){
+				alert("hata");
+			}
+		});
+	});
+	
 	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
 	
 	$('select').select2();

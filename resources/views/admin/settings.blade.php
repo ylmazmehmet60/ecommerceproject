@@ -32,7 +32,8 @@
                   <label class="control-label">Mevcut Parola</label>
                   <div class="controls">
                     <input type="password" name="current_pwd" id="current_pwd" />
-                    <span id="chkPwd"></span>
+                      
+					 <span id="chkPwd"></span>
                   </div>
                 </div>
                 <div class="control-group">
