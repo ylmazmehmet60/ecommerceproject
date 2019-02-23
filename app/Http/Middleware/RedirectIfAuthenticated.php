@@ -19,7 +19,10 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
-        }
+        }else{
+			
+			return redirect()->action('AdminController@login')->with('flash_message_error','Erişmek İçin giriş yapınız.');
+		}
 
         return $next($request);
     }
