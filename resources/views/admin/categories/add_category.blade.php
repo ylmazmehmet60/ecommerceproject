@@ -21,6 +21,17 @@
                   <input type="text" name="name" id="name">
                 </div>
               </div>
+			  <div class="control-group">
+                <label class="control-label">Kategori Seviyesi</label>
+                <div class="controls">
+                  <select name="parent_id" style="width: 220px;">
+                    <option value="0">Main Category</option>
+                    @foreach($levels as $val)
+                      <option value="{{ $val->id }}">{{ $val->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
               <div class="control-group">
                 <label class="control-label">Açıklama</label>
                 <div class="controls">

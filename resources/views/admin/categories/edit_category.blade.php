@@ -21,6 +21,17 @@
                   <input type="text" name="category_name" id="category_name" value="{{ $categoryDetails->name }}">
                 </div>
               </div>
+			  <div class="control-group">
+                <label class="control-label">Category Level</label>
+                <div class="controls">
+                  <select name="parent_id" style="width: 220px;">
+                    <option value="0">Main Category</option>
+                    @foreach($levels as $val)
+                      <option value="{{ $val->id }}" @if($val->id == $categoryDetails->parent_id) selected @endif>{{ $val->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
               <div class="control-group">
               </div>
               <div class="control-group">

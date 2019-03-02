@@ -33,6 +33,7 @@
                   <th>Kategori ID</th>
                   <th>Kategori Adı</th>
                   <th>Kategori Seviyesi</th>
+				  
                   <th>Kategori URL</th>
                   <th>İşlemler</th>
                 </tr>
@@ -43,6 +44,7 @@
                   <td>{{ $category->id }}</td>
                   <td>{{ $category->name }}</td>
                   <td>{{ $category->parent_id }}</td>
+				  
                   <td>{{ $category->url }}</td>
                   <td class="center"><a href="{{ url('/admin/edit-category/'.$category->id) }}" class="btn btn-primary btn-mini">Düzenle</a> <a id="delCat" href="{{ url('/admin/delete-category/'.$category->id) }}" class="btn btn-danger btn-mini">Sil</a></td>
                 </tr>
