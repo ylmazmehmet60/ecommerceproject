@@ -21,6 +21,23 @@ class CategoryController extends Controller
     	return view('admin.categories.add_category');
     }
 	
+	public function editCategory(Request $request, $id = null){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            Category::where(['id'=>$id])->update(['name'=>$data['category_name'],'description'=>$data['description'],'url'=>$data['url']]);
+            return redirect('/admin/view-categories')->with('flash_message_success','Kategori Güncellendi');
+        }
+        $categoryDetails = Category::where(['id'=>$id])->first();
+        return view('admin.categories.edit_category')->with(compact('categoryDetails'));
+    }
+    public function deleteCategory(Request $request, $id = null){
+        if(!empty($id)){
+            Category::where(['id'=>$id])->delete();
+            return redirect()->back()->with('flash_message_success','Kategori Silindi!');
+        }
+    }
+	
+	
 	public function viewCategories(){
     	$categories = Category::get();
     	$categories = json_decode(json_encode($categories));
