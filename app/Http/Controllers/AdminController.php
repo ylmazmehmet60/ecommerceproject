@@ -60,7 +60,14 @@ class AdminController extends Controller
             }
         }
     }
-
+	
+	
+    public function deleteCategory(Request $request, $id = null){
+        if(!empty($id)){
+            Category::where(['id'=>$id])->delete();
+            return redirect()->back()->with('flash_message_success','Kategori başarıyla silindi.');
+        }
+    }
 	
 	public function logout(){
         Session::flush();

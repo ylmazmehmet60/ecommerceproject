@@ -132,4 +132,11 @@ $(document).ready(function(){
 			$(element).parents('.control-group').addClass('success');
 		}
 	});
+	
+	$("#delCat").click(function(){
+		if(confirm('Kategoriyi silmek istediğinizden eminmisiniz?')){
+			return true;
+		}
+		return false;
+	});
 });
