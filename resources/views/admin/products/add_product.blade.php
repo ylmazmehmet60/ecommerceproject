@@ -3,8 +3,8 @@
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Products</a> <a href="#" class="current">Add Product</a> </div>
-    <h1>Products</h1>
+    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Ana</a> <a href="#">Ürünler</a> <a href="#" class="current">Ürün Ekle</a> </div>
+    <h1>Ürünler</h1>
     @if(Session::has('flash_message_error'))
         <div class="alert alert-error alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button> 
@@ -72,7 +72,7 @@
                 </div>
               </div>
               <div class="form-actions">
-                <input type="submit" value="Add Product" class="btn btn-success">
+                <input type="submit" value="Ürün Ekle" class="btn btn-success">
               </div>
             </form>
           </div>

@@ -3,7 +3,7 @@
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Ana Ekran</a> <a href="#">Categories</a> <a href="#" class="current">View Categories</a> </div>
+    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Ana Ekran</a> <a href="#">Kategoriler</a> <a href="#" class="current">Kategorileri Gör</a> </div>
     <h1>Kategoriler</h1>
      @if(Session::has('flash_message_error'))
         <div class="alert alert-error alert-block">
