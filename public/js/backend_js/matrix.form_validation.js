@@ -1,12 +1,6 @@
 
 $(document).ready(function(){
-	
-	$("#delCat").click(function(){
-		if(alert('Kategoriyi silmek istediğinizden eminmisiniz?')){
-			return true;
-		}
-		return false;
-	});
+
 	
 	$("#current_pwd").keyup(function(){
 		var current_pwd = $("#current_pwd").val();

@@ -46,7 +46,9 @@
                   <td>{{ $category->parent_id }}</td>
 				  
                   <td>{{ $category->url }}</td>
-                  <td class="center"><a href="{{ url('/admin/edit-category/'.$category->id) }}" class="btn btn-primary btn-mini">Düzenle</a> <a id="delCat" href="{{ url('/admin/delete-category/'.$category->id) }}" class="btn btn-danger btn-mini">Sil</a></td>
+                  <td class="center">
+				  <a href="{{ url('/admin/edit-category/'.$category->id) }}" class="btn btn-primary btn-mini">Düzenle</a> 
+				  <a id="delCat" rel="{{ $category->id }}" rel1="delete-category" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Sil</a>	
                 </tr>
                 @endforeach
                 
