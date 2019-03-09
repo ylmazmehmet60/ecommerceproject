@@ -3,8 +3,8 @@
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Settings</a> </div>
-    <h1>Admin Settings</h1>
+    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Ana</a> <a href="#" class="current">Ayarlar</a> </div>
+    <h1>Admin Ayarları</h1>
     @if(Session::has('flash_message_error'))
         <div class="alert alert-error alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button> 
@@ -50,7 +50,7 @@
                   </div>
                 </div>
                 <div class="form-actions">
-                  <input type="submit" value="Update Password" class="btn btn-success">
+                  <input type="submit" value="Parolayı Güncelle" class="btn btn-success">
                 </div>
               </form>
             </div>
