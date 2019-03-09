@@ -57,4 +57,14 @@ class ProductsController extends Controller{
     	}
     	return view('admin.products.add_product')->with(compact('categories_dropdown'));
     }
+	
+	public function viewProducts(){
+        $products = Product::get();
+        $products = json_decode(json_encode($products));
+        foreach($products as $key => $val){
+            $category_name = Category::where(['id'=>$val->category_id])->first();
+            $products[$key]->category_name = $category_name->name;
+        }
+        return view('admin.products.view_products')->with(compact('products'));
+    }
 }
