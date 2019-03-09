@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Auth;
 use Session;
+
 use Image;
 use App\Category;
 use App\Product;
@@ -28,7 +29,20 @@ class ProductsController extends Controller{
 				$product->description = '';    			
     		}
     		$product->price = $data['price'];
-    		$product->image='';
+    		if($request->hasFile('image')){
+					$image_tmp = Input::file('image');
+					if($image_tmp->isValid()){
+						$extension = $image_tmp->getClientOriginalExtension();
+						$filename = rand(111,99999).'.'.$extension;
+						$large_image_path = 'images/backend_images/products/large/'.$filename;
+						$medium_image_path = 'images/backend_images/products/medium/'.$filename;
+						$small_image_path = 'images/backend_images/products/small/'.$filename;
+						Image::make($image_tmp)->save($large_image_path);
+						Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
+						Image::make($image_tmp)->resize(300,300)->save($small_image_path);
+						$product->image = $filename;
+    			}
+    		}
     		$product->save();
             return redirect()->back()->with('flash_message_success','Ürün Eklendi!');
     	}
