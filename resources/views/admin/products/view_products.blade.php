@@ -1,6 +1,7 @@
 @extends('layouts.adminLayout.admin_design')
 @section('content')
 
+
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Ana</a> <a href="#">Ürünler</a> <a href="#" class="current">Ürünleri Gör</a> </div>
@@ -56,7 +57,11 @@
                       <img src="{{ asset('/images/backend_images/products/small/'.$product->image) }}" style="width:60px;">
                     @endif
                   </td>
-                  <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">Gör</a> <a href="{{ url('/admin/edit-product/'.$product->id) }}" class="btn btn-primary btn-mini">Düzenle</a> <a id="delCat" href="{{ url('/admin/delete-product/'.$product->id) }}" class="btn btn-danger btn-mini">Sil</a></td>
+                  <td class="center">
+				  <a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">Gör</a> 
+				  <a href="{{ url('/admin/edit-product/'.$product->id) }}" class="btn btn-primary btn-mini">Düzenle</a> 
+				  <a id="delProduct" rel="{{ $product->id }}" rel1="delete-product" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Sil</a>
+				  </td>
                 </tr>
                     <div id="myModal{{ $product->id }}" class="modal hide">
                       <div class="modal-header">
@@ -84,7 +89,6 @@
     </div>
   </div>
 </div>
-
 
 
 @endsection

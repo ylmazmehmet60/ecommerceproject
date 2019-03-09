@@ -146,5 +146,10 @@ class ProductsController extends Controller{
         Product::where(['id'=>$id])->update(['image'=>'']);
         return redirect()->back()->with('flash_message_success', 'Ürün resmi başarıyla silindi');
 	}
+	
+	public function deleteProduct($id = null){
+        Product::where(['id'=>$id])->delete();
+        return redirect()->back()->with('flash_message_success', 'Ürün başarıyla silindi');
+    }
 
 }
