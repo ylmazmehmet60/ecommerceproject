@@ -36,7 +36,7 @@
 						<div class="btn-group pull-right">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									USA
+									TR
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
@@ -47,7 +47,7 @@
 							
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									DOLLAR
+									TL
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
@@ -108,7 +108,7 @@
 					<div class="col-sm-3">
 						<div class="search_box pull-right">
 							<form action="" method="post">
-								<input type="text" placeholder="Search Product" name="product" />
+								<input type="text" placeholder="Ara..." name="product" />
 								<button type="submit" style="border:0px; height:33px; margin-left:-3px">Go</button>
 							</form>
 						</div>
