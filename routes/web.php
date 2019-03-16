@@ -8,6 +8,12 @@ Route::get('/','IndexController@index');
 
 Route::match(['get','post'],'/admin', 'AdminController@login');
 
+
+//KATEGORİ/LİSTELEME
+Route::get('/products/{url}','ProductsController@products');
+
+
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth']],function(){

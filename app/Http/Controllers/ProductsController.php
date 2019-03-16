@@ -192,5 +192,15 @@ class ProductsController extends Controller{
         return redirect()->back()->with('flash_message_success', 'Özellik Başarıyla Silindi');
     }
 
+	
+	public function products($url=null){
+    	
+    	$categories = Category::with('categories')->where(['parent_id' => 0])->get();
+    	$categoryDetails = Category::where(['url'=>$url])->first();
+    	$productsAll = Product::where(['category_id'=>$categoryDetails->id])->get();
+
+    	
+    	return view('products.listing')->with(compact('categories','categoryDetails','productsAll'));
+    }
 
 }
