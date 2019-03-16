@@ -151,5 +151,9 @@ class ProductsController extends Controller{
         Product::where(['id'=>$id])->delete();
         return redirect()->back()->with('flash_message_success', 'Ürün başarıyla silindi');
     }
+	
+	public function addAttributes(Request $request, $id=null){
+        return view('admin.products.add_attributes');
+    }
 
 }
