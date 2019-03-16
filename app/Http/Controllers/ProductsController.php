@@ -10,6 +10,7 @@ use Session;
 use Image;
 use App\Category;
 use App\Product;
+use App\ProductsAttribute;
 
 class ProductsController extends Controller{
     public function addProduct(Request $request){
@@ -152,8 +153,13 @@ class ProductsController extends Controller{
         return redirect()->back()->with('flash_message_success', 'Ürün başarıyla silindi');
     }
 	
-	public function addAttributes(Request $request, $id=null){
-        return view('admin.products.add_attributes');
+    public function addAttributes(Request $request, $id=null){
+        $productDetails = Product::where(['id' => $id])->first();
+        if($request->isMethod('post')){
+            $data = $request->all();
+			echo "<pre>"; print_r($data); die;
+        }
+        return view('admin.products.add_attributes')->with(compact('productDetails'));
     }
 
 }
