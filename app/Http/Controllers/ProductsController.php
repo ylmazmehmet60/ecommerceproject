@@ -197,8 +197,18 @@ class ProductsController extends Controller{
     	
     	$categories = Category::with('categories')->where(['parent_id' => 0])->get();
     	$categoryDetails = Category::where(['url'=>$url])->first();
-    	$productsAll = Product::where(['category_id'=>$categoryDetails->id])->get();
-
+    	//$productsAll = Product::where(['category_id'=>$categoryDetails->id])->get();
+    	if($categoryDetails->parent_id==0){
+    		$subCategories = Category::where(['parent_id'=>$categoryDetails->id])->get();
+    		$subCategories = json_decode(json_encode($subCategories));
+    		foreach($subCategories as $subcat){
+    			$cat_ids[] = $subcat->id;
+    		}
+    		//$productsAll = Product::where(['category_id'=>$categoryDetails->id])->get();
+			//degisecek
+    	}else{
+    		$productsAll = Product::where(['category_id'=>$categoryDetails->id])->get();
+    	}
     	
     	return view('products.listing')->with(compact('categories','categoryDetails','productsAll'));
     }
