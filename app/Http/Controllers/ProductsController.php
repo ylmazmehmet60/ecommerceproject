@@ -204,7 +204,7 @@ class ProductsController extends Controller{
     		foreach($subCategories as $subcat){
     			$cat_ids[] = $subcat->id;
     		}
-    		//$productsAll = Product::where(['category_id'=>$categoryDetails->id])->get();
+    		$productsAll = Product::where(['category_id'=>$categoryDetails->id])->get();
 			//degisecek
     	}else{
     		$productsAll = Product::where(['category_id'=>$categoryDetails->id])->get();
