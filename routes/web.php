@@ -4,6 +4,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/','IndexController@index');
 
 Route::match(['get','post'],'/admin', 'AdminController@login');
 
