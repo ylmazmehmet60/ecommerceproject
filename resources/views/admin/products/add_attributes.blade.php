@@ -3,8 +3,8 @@
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Ana</a> <a href="#">Ürünler</a> <a href="#" class="current">Ürün Özelliği Ekle</a> </div>
-    <h1>Products</h1>
+    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Ana</a> <a href="#">Ürünler</a> <a href="#" class="current">Özellik Ekle</a> </div>
+    <h1>Ürünler</h1>
     @if(Session::has('flash_message_error'))
             <div class="alert alert-error alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button> 
@@ -30,19 +30,19 @@
               <input type="hidden" name="product_id" value="{{ $productDetails->id }}">
               <div class="control-group">
                 <label class="control-label">Kategori Adı</label>
-                
+                <label class="control-label">{{ $category_name }}</label>
               </div>
               <div class="control-group">
                 <label class="control-label">Ürün Adı</label>
-               
+                <label class="control-label">{{ $productDetails->product_name }}</label>
               </div>
               <div class="control-group">
                 <label class="control-label">Ürün Kodu</label>
-               
+                <label class="control-label">{{ $productDetails->product_code }}</label>
               </div>
               <div class="control-group">
                 <label class="control-label">Ürün Rengi</label>
-                
+                <label class="control-label">{{ $productDetails->product_color }}</label>
               </div>
               <div class="control-group">
                 <label class="control-label"></label>
@@ -56,7 +56,7 @@
               </div>
              
               <div class="form-actions">
-                <input type="submit" value="Add Attributes" class="btn btn-success">
+                <input type="submit" value="Özellik Ekle" class="btn btn-success">
               </div>
             </form>
           </div>
@@ -83,7 +83,22 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php /*echo "<pre>"; print_r($productDetails->attributes); die;*/ ?>
+                  @foreach($productDetails->attributes as $attribute)
+                  <tr class="gradeX">
+                    <td class="center"><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}">{{ $attribute->id }}</td>
+                    <td class="center">{{ $attribute->sku }}</td>
+                    <td class="center">{{ $attribute->size }}</td>
+                    <td class="center"><input name="price[]" type="text" value="{{ $attribute->price }}" /></td>
+                    <td class="center"><input name="stock[]" type="text" value="{{ $attribute->stock }}" required /></td> 
+                    <td class="center">
+                      <input type="submit" value="Update" class="btn btn-primary btn-mini" />
+                      <a rel="{{ $attribute->id }}" rel1="delete-attribute" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Sil</a>
+                    </td>
 
+                  </tr>
+                  @endforeach
+                </tbody>
               </table>
             </form>
           </div>

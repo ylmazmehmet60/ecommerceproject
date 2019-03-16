@@ -154,12 +154,43 @@ class ProductsController extends Controller{
     }
 	
     public function addAttributes(Request $request, $id=null){
-        $productDetails = Product::where(['id' => $id])->first();
+        $productDetails = Product::with('attributes')->where(['id' => $id])->first();
+        $productDetails = json_decode(json_encode($productDetails));
+        /*echo "<pre>"; print_r($productDetails); die;*/
+        $categoryDetails = Category::where(['id'=>$productDetails->category_id])->first();
+        $category_name = $categoryDetails->name;
         if($request->isMethod('post')){
             $data = $request->all();
-			echo "<pre>"; print_r($data); die;
+            //echo "<pre>"; print_r($data); die;
+            foreach($data['sku'] as $key => $val){
+                if(!empty($val)){
+                    $attrCountSKU = ProductsAttribute::where(['sku'=>$val])->count();
+                    if($attrCountSKU>0){
+                        return redirect('admin/add-attributes/'.$id)->with('flash_message_error', 'SKU already exists. Please add another SKU.');    
+                    }
+                    $attrCountSizes = ProductsAttribute::where(['product_id'=>$id,'size'=>$data['size'][$key]])->count();
+                    if($attrCountSizes>0){
+                        return redirect('admin/add-attributes/'.$id)->with('flash_message_error', 'Attribute already exists. Please add another Attribute.');    
+                    }
+                    $attr = new ProductsAttribute;
+                    $attr->product_id = $id;
+                    $attr->sku = $val;
+                    $attr->size = $data['size'][$key];
+                    $attr->price = $data['price'][$key];
+                    $attr->stock = $data['stock'][$key];
+                    $attr->save();
+                }
+            }
+            return redirect('admin/add-attributes/'.$id)->with('flash_message_success', 'Product Attributes has been added successfully');
         }
-        return view('admin.products.add_attributes')->with(compact('productDetails'));
+        $title = "Add Attributes";
+        return view('admin.products.add_attributes')->with(compact('title','productDetails','category_name'));
     }
+	
+	public function deleteAttribute($id = null){
+        ProductsAttribute::where(['id'=>$id])->delete();
+        return redirect()->back()->with('flash_message_success', 'Özellik Başarıyla Silindi');
+    }
+
 
 }
