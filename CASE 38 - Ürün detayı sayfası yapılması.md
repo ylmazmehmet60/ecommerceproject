@@ -1,0 +1,1 @@
+Route::get('/product/{id}','ProductsController@product');

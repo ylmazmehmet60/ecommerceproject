@@ -12,7 +12,7 @@ Route::match(['get','post'],'/admin', 'AdminController@login');
 //KATEGORİ/LİSTELEME
 Route::get('/products/{url}','ProductsController@products');
 
-
+Route::get('/product/{id}','ProductsController@product');
 
 Auth::routes();
 
