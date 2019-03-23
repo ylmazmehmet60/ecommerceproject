@@ -236,7 +236,10 @@ class ProductsController extends Controller{
 
         $categories = Category::with('categories')->where(['parent_id' => 0])->get();
         $total_stock = ProductsAttribute::where('product_id',$id)->sum('stock');
-        return view('products.detail')->with(compact('productDetails','categories','total_stock','relatedProducts'));
+		
+		$productAltImages = ProductsImage::where('product_id',$id)->get();
+
+        return view('products.detail')->with(compact('productDetails','categories','total_stock','relatedProducts','productAltImages'));
     }
 	 
 	public function getProductPrice(Request $request){

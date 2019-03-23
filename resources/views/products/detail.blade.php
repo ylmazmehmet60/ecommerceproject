@@ -26,7 +26,21 @@
 								</a>
 								</div>
 							</div>
-
+							<div id="similar-product" class="carousel slide" data-ride="carousel">
+								
+								  <!-- Wrapper for slides -->
+								    <div class="carousel-inner">
+										@if(count($productAltImages)>0)
+										<div class="item active thumbnails">
+												@foreach($productAltImages as $altimg)
+													<a href="{{ asset('images/backend_images/products/medium/'.$altimg->image) }}" data-standard="{{ asset('images/backend_images/products/small/'.$altimg->image) }}">
+										  				<img class="changeImage" style="width:80px; cursor:pointer" src="{{ asset('images/backend_images/products/small/'.$altimg->image) }}" alt="">
+													</a>
+												@endforeach
+										</div>
+										@endif
+									</div>
+							</div>
 						</div>
 						<div class="col-sm-7">
 							<form name="addtoCartForm" id="addtoCartForm" action="{{ url('add-cart') }}" method="post">{{ csrf_field() }}
