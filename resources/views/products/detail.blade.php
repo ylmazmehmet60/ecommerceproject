@@ -14,11 +14,11 @@
 	                    <strong>{!! session('flash_message_error') !!}</strong>
 	            </div>
 	        @endif   
-				<div class="col-sm-3">
-					@include('layouts.frontLayout.front_sidebar')
+				<div class="col-sm-1">
+				
 				</div>
 				
-				<div class="col-sm-9 padding-right">
+				<div class="col-sm-11 padding-right">
 
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
@@ -43,16 +43,18 @@
 									<h2>{{ $productDetails->product_name }}</h2>
 									<p>Product Code: {{ $productDetails->product_code }}</p>
 									<p>
+									
 										<select id="selSize" name="size" style="width:150px;" required>
 											<option value="">Select</option>
 											@foreach($productDetails->attributes as $sizes)
 											<option value="{{ $productDetails->id }}-{{ $sizes->size }}">{{ $sizes->size }}</option>
 											@endforeach
 										</select>	
+										
 									</p>
 									<img src="images/product-details/rating.png" alt="" />
 									<span>
-										<span id="getPrice">INR {{ $productDetails->price }}</span>
+										<span id="getPrice">$ {{ $productDetails->price }}</span>
 										<label>Quantity:</label>
 									</span>
 									<p><b>Condition:</b> New</p>

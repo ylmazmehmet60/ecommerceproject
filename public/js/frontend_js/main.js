@@ -33,46 +33,17 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 
-	// Change Price with Size
-	$("#selSize").change(function(){
-		var idsize = $(this).val();
-		if(idsize==""){
-			return false;
-		}
-		$.ajax({
-			type:'get',
-			url:'/get-product-price',
-			data:{idsize:idsize},
-			success:function(resp){
-				var arr = resp.split('#');
-				$("#getPrice").html("INR "+arr[0]);
-				$("#price").val(arr[0]);
-				if(arr[1]==0){
-					$("#cartButton").hide();
-					$("#Availability").text("Out Of Stock");
-				}else{
-					$("#cartButton").show();
-					$("#Availability").text("In Stock");
-				}
-				
-				
-			},error:function(){
-				alert("Error");
-			}
-		});
-	});
 
-	// Change Image
 	$(".changeImage").click(function(){
 		var image = $(this).attr('src');
 		$("#mainImg").attr("src", image);
-		/*$("#mainImgLarge").attr("href", image);*/
+	
 	});
 
-	// Instantiate EasyZoom instances
+	
         var $easyzoom = $('.easyzoom').easyZoom();
 
-        // Setup thumbnails example
+   
         var api1 = $easyzoom.filter('.easyzoom--with-thumbnails').data('easyZoom');
 
         $('.thumbnails').on('click', 'a', function(e) {
@@ -80,11 +51,11 @@ $(document).ready(function(){
 
             e.preventDefault();
 
-            // Use EasyZoom's `swap` method
+            
             api1.swap($this.data('standard'), $this.attr('href'));
         });
 
-        // Setup toggles example
+      
         var api2 = $easyzoom.filter('.easyzoom--with-toggle').data('easyZoom');
 
         $('.toggle').on('click', function() {
@@ -103,7 +74,7 @@ $(document).ready(function(){
 
 
 $().ready(function(){
-	// Validate Register form on keyup and submit
+
 	$("#registerForm").validate({
 		rules:{
 			name:{
@@ -139,7 +110,7 @@ $().ready(function(){
 		}
 	});
 
-	// Validate Register form on keyup and submit
+
 	$("#accountForm").validate({
 		rules:{
 			name:{
@@ -187,7 +158,6 @@ $().ready(function(){
 		}
 	});
 
-	// Validate Login form on keyup and submit
 	$("#loginForm").validate({
 		rules:{
 			email:{
@@ -239,7 +209,7 @@ $().ready(function(){
 		}
 	});
 
-	// Check Current User Password
+
 	$("#current_pwd").keyup(function(){
 		var current_pwd = $(this).val();
 		$.ajax({
@@ -262,15 +232,43 @@ $().ready(function(){
 		});
 	});
 
-	// Password Strength Script
+
 	$('#myPassword').passtrength({
       minChars: 4,
       passwordToggle: true,
       tooltip: true,
       eyeImg : "/images/frontend_images/eye.svg"
     });
+	
+	$("#selSize").change(function(){
+		var idsize = $(this).val();
+		if(idsize==""){
+			return false;
+		}
+		$.ajax({
+			type:'get',
+			url:'/get-product-price',
+			data:{idsize:idsize},
+			success:function(resp){
+				var arr = resp.split('#');
+				$("#getPrice").html("INR "+arr[0]);
+				$("#price").val(arr[0]);
+				if(arr[1]==0){
+					$("#cartButton").hide();
+					$("#Availability").text("Out Of Stock");
+				}else{
+					$("#cartButton").show();
+					$("#Availability").text("In Stock");
+				}
+				
+				
+			},error:function(){
+				alert("Error");
+			}
+		});
+	});
 
-    // Copy Billing Address to Shipping Address Script
+
     $("#copyAddress").click(function(){
     	if(this.checked){
     		$("#shipping_name").val($("#billing_name").val());

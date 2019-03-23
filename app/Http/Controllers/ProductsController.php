@@ -229,6 +229,15 @@ class ProductsController extends Controller{
 		 return view('products.detail')->with(compact('productDetails','categories'));
 
 	 }
+	 
+	public function getProductPrice(Request $request){
+        $data = $request->all(); 
+        $proArr = explode("-",$data['idsize']);
+        $proAttr = ProductsAttribute::where(['product_id'=>$proArr[0],'size'=>$proArr[1]])->first();
+        echo $proAttr->price; 
+        echo "#";
+        echo $proAttr->stock; 
+    }
 
 
 }

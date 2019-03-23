@@ -14,6 +14,9 @@ Route::get('/products/{url}','ProductsController@products');
 
 Route::get('/product/{id}','ProductsController@product');
 
+
+Route::any('/get-product-price','ProductsController@getProductPrice');
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth']],function(){
