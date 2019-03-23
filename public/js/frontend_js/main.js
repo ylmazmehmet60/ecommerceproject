@@ -251,14 +251,14 @@ $().ready(function(){
 			data:{idsize:idsize},
 			success:function(resp){
 				var arr = resp.split('#');
-				$("#getPrice").html("INR "+arr[0]);
+				$("#getPrice").html("$ "+arr[0]);
 				$("#price").val(arr[0]);
 				if(arr[1]==0){
 					$("#cartButton").hide();
-					$("#Availability").text("Out Of Stock");
+					$("#Availability").text("Stokta");
 				}else{
 					$("#cartButton").show();
-					$("#Availability").text("In Stock");
+					$("#Availability").text("Stokta Değil");
 				}
 				
 				

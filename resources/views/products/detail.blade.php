@@ -1,7 +1,4 @@
 @extends('layouts.frontLayout.front_design')
-@section('content')
-
-@extends('layouts.frontLayout.front_design')
 
 @section('content')
 
@@ -14,17 +11,17 @@
 	                    <strong>{!! session('flash_message_error') !!}</strong>
 	            </div>
 	        @endif   
-				<div class="col-sm-1">
-				
+				<div class="col-sm-3">
+					@include('layouts.frontLayout.front_sidebar')	
 				</div>
 				
-				<div class="col-sm-11 padding-right">
+				<div class="col-sm-9 padding-right">
 
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
 							<div class="view-product">
 								<div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
-								<a id="mainImgLarge" href="{{ asset('/images/backend_images/product/large/'.$productDetails->image) }}">
+								<a id="mainImgLarge" href="{{ asset('/images/backend_images/products/large/'.$productDetails->image) }}">
 									<img style="width:300px" id="mainImg" src="{{ asset('/images/backend_images/products/medium/'.$productDetails->image) }}" alt="" />
 								</a>
 								</div>
@@ -32,7 +29,7 @@
 
 						</div>
 						<div class="col-sm-7">
-							<form name="addtoCartForm">
+							<form name="addtoCartForm" id="addtoCartForm" action="{{ url('add-cart') }}" method="post">{{ csrf_field() }}
 		                        <input type="hidden" name="product_id" value="{{ $productDetails->id }}">
 		                        <input type="hidden" name="product_name" value="{{ $productDetails->product_name }}">
 		                        <input type="hidden" name="product_code" value="{{ $productDetails->product_code }}">
@@ -41,23 +38,29 @@
 								<div class="product-information"><!--/product-information-->
 									<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 									<h2>{{ $productDetails->product_name }}</h2>
-									<p>Product Code: {{ $productDetails->product_code }}</p>
+									<p>Ürün Kodu: {{ $productDetails->product_code }}</p>
 									<p>
-									
 										<select id="selSize" name="size" style="width:150px;" required>
 											<option value="">Select</option>
 											@foreach($productDetails->attributes as $sizes)
 											<option value="{{ $productDetails->id }}-{{ $sizes->size }}">{{ $sizes->size }}</option>
 											@endforeach
 										</select>	
-										
 									</p>
 									<img src="images/product-details/rating.png" alt="" />
 									<span>
 										<span id="getPrice">$ {{ $productDetails->price }}</span>
-										<label>Quantity:</label>
+										<label>Miktar:</label>
+										<input name="quantity" type="text" value="1" />
+										@if($total_stock>0)
+											<button type="submit" class="btn btn-fefault cart" id="cartButton">
+												<i class="fa fa-shopping-cart"></i>
+												Sepete Ekle
+											</button>
+										@endif	
 									</span>
-									<p><b>Condition:</b> New</p>
+									<p><b>Stok: </b><span id="Availability"> @if($total_stock>0) Stokta @else Stokta Değil @endif</span></p>
+									<p><b>Durum:</b> YENİ</p>
 			
 									<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 								</div><!--/product-information-->
@@ -68,9 +71,9 @@
 					<div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li class="active"><a href="#description" data-toggle="tab">Description</a></li>
-								<li><a href="#care" data-toggle="tab">Material & Care</a></li>
-								<li><a href="#delivery" data-toggle="tab">Delivery Options</a></li>
+								<li class="active"><a href="#description" data-toggle="tab">Açıklama</a></li>
+								<li><a href="#care" data-toggle="tab">Metaryal</a></li>
+								<li><a href="#delivery" data-toggle="tab">Teslimat</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
@@ -88,18 +91,18 @@
 							
 							<div class="tab-pane fade" id="delivery" >
 								<div class="col-sm-12">
-									<p>100% Original Products <br>
-									Cash on delivery might be available</p>
+									<p>100% Orijinal Ürün <br>
+									Nakit Ödeme Yapabilirsiniz</p>
 								</div>
 							</div>
 					
 							
 						</div>
 					</div><!--/category-tab-->
+					
 				</div>
 			</div>
 		</div>
 	</section>	
 
-@endsection
 @endsection

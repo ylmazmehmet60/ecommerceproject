@@ -223,12 +223,20 @@ class ProductsController extends Controller{
     	return view('products.listing')->with(compact('categories','categoryDetails','productsAll'));
     }
 	
-	 public function product($id = null){
-		 
-		$productDetails = Product::with('attributes')->where('id',$id)->first();
-		 return view('products.detail')->with(compact('productDetails','categories'));
+    public function product($id = null){
+        // Show 404 Page if Product is disabled
+        $productCount = Product::where(['id'=>$id])->count();
+        if($productCount==0){
+            abort(404);
+        }
+        // Get Product Details
+        $productDetails = Product::with('attributes')->where('id',$id)->first();
+        $relatedProducts = Product::where('id','!=',$id)->where(['category_id' => $productDetails->category_id])->get();
 
-	 }
+        $categories = Category::with('categories')->where(['parent_id' => 0])->get();
+        $total_stock = ProductsAttribute::where('product_id',$id)->sum('stock');
+        return view('products.detail')->with(compact('productDetails','categories','total_stock','relatedProducts'));
+    }
 	 
 	public function getProductPrice(Request $request){
         $data = $request->all(); 
