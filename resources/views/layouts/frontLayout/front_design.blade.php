@@ -14,6 +14,7 @@
     <link href="{{ asset('css/frontend_css/animate.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/frontend_css/main.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/frontend_css/responsive.css') }}" rel="stylesheet">
+	
     <link href="{{ asset('css/frontend_css/easyzoom.css') }}" rel="stylesheet">
     <link href="{{ asset('css/frontend_css/passtrength.css') }}" rel="stylesheet">
 </head><!--/head-->
