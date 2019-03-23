@@ -9,6 +9,7 @@ $mainCategories =  Controller::mainCategories();
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
 								<li><a href="#"><i class="fa fa-phone"></i> +90 542 277 41 12</a></li>
+								
 								<li><a href="#"><i class="fa fa-envelope"></i> ylmazmehmet60@gmail.com</a></li>
 							</ul>
 						</div>
@@ -20,6 +21,7 @@ $mainCategories =  Controller::mainCategories();
 								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 								<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+								
 								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 							</ul>
 						</div>
@@ -93,11 +95,13 @@ $mainCategories =  Controller::mainCategories();
 								<li><a href="index.html" class="active">Ana</a></li> 
 								<li class="dropdown"><a href="#">Alışveriş<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
+									
                                     	@foreach($mainCategories as $cat)
 											@if($cat->status==1)
 												<li><a href="{{ asset('products/'.$cat->url) }}">{{ $cat->name }}</a></li>
 											@endif
 										@endforeach
+										
                                     </ul>
                                 </li>
 								<li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
