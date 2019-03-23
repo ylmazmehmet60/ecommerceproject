@@ -76,8 +76,8 @@
                 <tr class="gradeX">
                   <td class="center">{{ $image->id }}</td>
                   <td class="center">{{ $image->product_id }}</td>
-                  <td class="center"><img width=130px src="{{ asset('images/backend_images/product/small/'.$image->image) }}"></td>
-                  <td class="center"><a id="delImage" rel="{{ $image->id }}" rel1="delete-alt-image" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Delete</a></td>
+                  <td class="center"><img width=130px src="{{ asset('images/backend_images/products/small/'.$image->image) }}"></td>
+                  <td class="center"><a id="delImage" rel="{{ $image->id }}" rel1="delete-alt-image" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Sil</a></td>
 
                 </tr>
                 @endforeach

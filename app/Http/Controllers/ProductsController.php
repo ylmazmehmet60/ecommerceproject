@@ -272,11 +272,35 @@ class ProductsController extends Controller{
                     $image->save();
                 }   
             }
-            return redirect('admin/add-images/'.$id)->with('flash_message_success', 'Product Images has been added successfully');
+            return redirect('admin/add-images/'.$id)->with('flash_message_success', 'Ürün Resmi Başarıyla Eklendi');
         }
         $productImages = ProductsImage::where(['product_id' => $id])->orderBy('id','DESC')->get();
         $title = "Add Images";
         return view('admin.products.add_images')->with(compact('title','productDetails','category_name','productImages'));
+    }
+	
+	 public function deleteProductAltImage($id=null){
+
+        $productImage = ProductsImage::where('id',$id)->first();
+
+        $large_image_path = 'images/backend_images/products/large/';
+        $medium_image_path = 'images/backend_images/products/medium/';
+        $small_image_path = 'images/backend_images/products/small/';
+
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+
+        if(file_exists($medium_image_path.$productImage->image)){
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+
+        ProductsImage::where(['id'=>$id])->delete();
+        return redirect()->back()->with('flash_message_success', 'Ürün alt resmi başarıyla silindi!');
     }
 
     
