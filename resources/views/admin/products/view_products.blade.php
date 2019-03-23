@@ -61,9 +61,11 @@
 				  <a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">Gör</a> 
 				  <a href="{{ url('/admin/edit-product/'.$product->id) }}" class="btn btn-primary btn-mini">Düzenle</a> 
 				  <a href="{{ url('/admin/add-attributes/'.$product->id) }}" class="btn btn-success btn-mini">Özellik Ekle</a>
+				  <a href="{{ url('/admin/add-images/'.$product->id) }}" class="btn btn-info btn-mini">Ek Resim Ekle</a>
 				  <a id="delProduct" rel="{{ $product->id }}" rel1="delete-product" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Sil</a>
 				  </td>
                 </tr>
+				
                     <div id="myModal{{ $product->id }}" class="modal hide">
                       <div class="modal-header">
                         <button data-dismiss="modal" class="close" type="button">×</button>
