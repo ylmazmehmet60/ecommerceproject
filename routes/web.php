@@ -19,6 +19,7 @@ Route::get('/product/{id}','ProductsController@product');
 Route::match(['get', 'post'],'/cart','ProductsController@cart');
 Route::match(['get', 'post'], '/add-cart', 'ProductsController@addtocart');
 
+Route::get('/cart/delete-product/{id}','ProductsController@deleteCartProduct');
 
 
 Route::any('/get-product-price','ProductsController@getProductPrice');
