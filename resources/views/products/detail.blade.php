@@ -66,14 +66,19 @@
 										<span id="getPrice">$ {{ $productDetails->price }}</span>
 										<label>Miktar:</label>
 										<input name="quantity" type="text" value="1" />
+										
 										@if($total_stock>0)
 											<button type="submit" class="btn btn-fefault cart" id="cartButton">
 												<i class="fa fa-shopping-cart"></i>
 												Sepete Ekle
 											</button>
 										@endif	
+										
 									</span>
-									<p><b>Stok: </b><span id="Availability"> @if($total_stock>0) Stokta @else Stokta Değil @endif</span></p>
+									<p>
+										<b>Stok:</b>
+										<span id="Availability"> @if($total_stock>0) Stokta @else Stokta Değil @endif</span>
+									</p>
 									<p><b>Durum:</b> YENİ</p>
 			
 									<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
