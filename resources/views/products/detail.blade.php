@@ -49,10 +49,10 @@
 		                        <input type="hidden" name="product_code" value="{{ $productDetails->product_code }}">
 		                        <input type="hidden" name="product_color" value="{{ $productDetails->product_color }}">
 		                        <input type="hidden" name="price" id="price" value="{{ $productDetails->price }}">
-								<div class="product-information"><!--/product-information-->
+								<div class="product-information">
 									<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 									<h2>{{ $productDetails->product_name }}</h2>
-									<p>Ürün Kodu: {{ $productDetails->product_code }}</p>
+									<p>Product Code: {{ $productDetails->product_code }}</p>
 									<p>
 										<select id="selSize" name="size" style="width:150px;" required>
 											<option value="">Select</option>
@@ -66,28 +66,23 @@
 										<span id="getPrice">$ {{ $productDetails->price }}</span>
 										<label>Miktar:</label>
 										<input name="quantity" type="text" value="1" />
-										
 										@if($total_stock>0)
 											<button type="submit" class="btn btn-fefault cart" id="cartButton">
 												<i class="fa fa-shopping-cart"></i>
-												Sepete Ekle
+												Karta Ekle
 											</button>
 										@endif	
-										
 									</span>
-									<p>
-										<b>Stok:</b>
-										<span id="Availability"> @if($total_stock>0) Stokta @else Stokta Değil @endif</span>
-									</p>
-									<p><b>Durum:</b> YENİ</p>
+									<p><b>Durum: </b><span id="Availability"> @if($total_stock>0) Stokta @else Stokta değil @endif</span></p>
+									<p><b>Durum:</b> New</p>
 			
 									<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
-								</div><!--/product-information-->
+								</div>
 							</form>
 						</div>
-					</div><!--/product-details-->
+					</div><
 					
-					<div class="category-tab shop-details-tab"><!--category-tab-->
+					<div class="category-tab shop-details-tab">
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
 								<li class="active"><a href="#description" data-toggle="tab">Açıklama</a></li>

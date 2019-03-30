@@ -14,6 +14,9 @@ Route::get('/products/{url}','ProductsController@products');
 
 Route::get('/product/{id}','ProductsController@product');
 
+Route::match(['get', 'post'], '/add-cart', 'ProductsController@addtocart');
+
+
 
 Route::any('/get-product-price','ProductsController@getProductPrice');
 

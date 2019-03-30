@@ -13,6 +13,10 @@ use App\Product;
 use App\ProductsAttribute;
 use App\ProductsImage;
 
+
+use DB;
+
+
 class ProductsController extends Controller{
     public function addProduct(Request $request){
     	if($request->isMethod('post')){
@@ -328,6 +332,29 @@ class ProductsController extends Controller{
             return redirect('admin/add-attributes/'.$id)->with('flash_message_success', 'Ürün Özelliği başarıyla Eklendi!!');
         }
     }
+	
+	 public function addtocart(Request $request){
+        $data = $request->all();
+		
+		if(empty($data['user_email'])){
+            $data['user_email'] = '';    
+        } 
+  
+
+		if(empty($data['session_id'])){
+            $data['session_id'] = '';    
+        }
+		
+		$sizeIDArr = explode('-',$data['size']);
+		$product_size = $sizeIDArr[1];
+		
+         DB::table('cart')
+        ->insert(['product_id' => $data['product_id'],'product_name' => $data['product_name'],
+            'product_code' => $data['product_code'],'product_color' => $data['product_color'],
+            'price' => $data['price'],'size' => $product_size,'quantity' => $data['quantity'],'user_email' => $data['user_email'],'session_id' => $data['session_id']]);
+
+    }    
+
 
     
 }
