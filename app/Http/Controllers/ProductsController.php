@@ -348,10 +348,19 @@ class ProductsController extends Controller{
         }
 		
 		$sizeIDArr = explode('-',$data['size']);
+		
+		$countProducts = DB::table('cart')->where(['product_id' => $data['product_id'],'product_color' => $data['product_color'],'size' => $data['size'],'session_id' => $session_id])->count();
+        if($countProducts>0){
+            return redirect()->back()->with('flash_message_error','Product already exist in Cart!');
+        }
+		
 		$product_size = $sizeIDArr[1];
 		
+		$getSKU = ProductsAttribute::select('sku')->where(['product_id' => $data['product_id'], 'size' => $product_size])->first();
+
+		
          DB::table('cart')
-        ->insert(['product_id' => $data['product_id'],'product_name' => $data['product_name'],
+        ->insert(['product_id' => $data['product_id'],'product_name' => $data['product_name'],'product_code' => $getSKU['sku'],
             'product_code' => $data['product_code'],'product_color' => $data['product_color'],
             'price' => $data['price'],'size' => $product_size,'quantity' => $data['quantity'],'user_email' => $data['user_email'],'session_id' => $session_id]);
 	
@@ -373,6 +382,18 @@ class ProductsController extends Controller{
 	public function deleteCartProduct($id=null){
         DB::table('cart')->where('id',$id)->delete();
         return redirect('cart')->with('flash_message_success','Ürün Silindi!');
+    }
+	
+	public function updateCartQuantity($id=null,$quantity=null){
+        $getCartDetails = DB::table('cart')->where('id',$id)->first();
+        $getProductStock = ProductsAttribute::where('sku',$getCartDetails->product_code)->first();
+        $updated_quantity = $getCartDetails->quantity+$quantity;
+        if($getProductStock->stock>=$updated_quantity){
+            DB::table('cart')->where('id',$id)->increment('quantity',$quantity); 
+            return redirect('cart')->with('flash_message_success','Ürünler başarıyla güncellendi');   
+        }else{
+            return redirect('cart')->with('flash_message_error','Gereken ürün adeti bulunamadı');    
+        }
     }
 
 
