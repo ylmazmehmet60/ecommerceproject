@@ -305,6 +305,18 @@ class ProductsController extends Controller{
         ProductsImage::where(['id'=>$id])->delete();
         return redirect()->back()->with('flash_message_success', 'Ürün alt resmi başarıyla silindi!');
     }
+	
+	public function editAttributes(Request $request, $id=null){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            foreach($data['idAttr'] as $key=> $attr){
+                if(!empty($attr)){
+                    ProductsAttribute::where(['id' => $data['idAttr'][$key]])->update(['price' => $data['price'][$key], 'stock' => $data['stock'][$key]]);
+                }
+            }
+            return redirect('admin/add-attributes/'.$id)->with('flash_message_success', 'Ürün Özelliği başarıyla Eklendi!!');
+        }
+    }
 
     
 }
