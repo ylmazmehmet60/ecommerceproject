@@ -14,6 +14,9 @@ Route::get('/products/{url}','ProductsController@products');
 
 Route::get('/product/{id}','ProductsController@product');
 
+
+//SEPET
+Route::match(['get', 'post'],'/cart','ProductsController@cart');
 Route::match(['get', 'post'], '/add-cart', 'ProductsController@addtocart');
 
 
