@@ -92,7 +92,7 @@
                     </table>
                 </div>
               </div>
-              <div class="control-group">
+					<div class="control-group">
                 <label class="control-label">Aktif</label>
                 <div class="controls">
                   <input type="checkbox" name="status" id="status" @if($productDetails->status == "1") checked @endif value="1">

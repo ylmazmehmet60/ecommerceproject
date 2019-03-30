@@ -45,6 +45,14 @@ class ProductsController extends Controller{
 						$product->image = $filename;
     			}
     		}
+			
+			if(empty($data['status'])){
+                $status='0';
+            }else{
+                $status='1';
+            }
+			$product->status = $status;
+			
     		$product->save();
             return redirect()->back()->with('flash_message_success','Ürün Eklendi!');
     	}
@@ -95,8 +103,15 @@ class ProductsController extends Controller{
 			if(empty($data['description'])){
             	$data['description'] = '';
             }
+			
+			if(empty($data['status'])){
+                $status='0';
+            }else{
+                $status='1';
+            }
+			
 
-			Product::where(['id'=>$id])->update(['category_id'=>$data['category_id'],'product_name'=>$data['product_name'],'product_code'=>$data['product_code'],'product_color'=>$data['product_color'],'description'=>$data['description'],'price'=>$data['price'],'image'=>$fileName]);
+			Product::where(['id'=>$id])->update(['category_id'=>$data['category_id'],'product_name'=>$data['product_name'],'product_code'=>$data['product_code'],'product_color'=>$data['product_color'],'description'=>$data['description'],'price'=>$data['price'],'image'=>$fileName,'status'=>$status]);
 		
 			return redirect()->back()->with('flash_message_success', 'Ürün başarıyla güncellendi');
 		}
