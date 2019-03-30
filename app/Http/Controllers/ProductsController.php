@@ -229,15 +229,11 @@ class ProductsController extends Controller{
         if($productCount==0){
             abort(404);
         }
-        $productDetails = Product::with('attributes')->where('id',$id)->first();
+        $productDetails = Product::with('attributes')->where('id',$id)->first();		
         $relatedProducts = Product::where('id','!=',$id)->where(['category_id' => $productDetails->category_id])->get();
-
         $categories = Category::with('categories')->where(['parent_id' => 0])->get();
-		
-        $total_stock = ProductsAttribute::where('product_id',$id)->sum('stock');
-		
+        $total_stock = ProductsAttribute::where('product_id',$id)->sum('stock');	
 		$productAltImages = ProductsImage::where('product_id',$id)->get();
-
 		
         return view('products.detail')->with(compact('productDetails','categories','total_stock','relatedProducts','productAltImages'));
     }
