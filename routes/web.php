@@ -26,12 +26,20 @@ Route::any('/get-product-price','ProductsController@getProductPrice');
 
 Auth::routes();
 
+Route::get('/login-register','UsersController@userLoginRegister');
+Route::post('user-login','UsersController@login');
+Route::post('/user-register','UsersController@register');
+Route::get('confirm/{code}','UsersController@confirmAccount');
+Route::get('/user-logout','UsersController@logout'); 
+
+
+
 Route::group(['middleware' => ['auth']],function(){
 	Route::get('/admin/dashboard','AdminController@dashboard');	
 	Route::get('/admin/settings','AdminController@settings');
 	Route::get('/admin/check-pwd','AdminController@chkPassword');
     Route::match(['get','post'],'/admin/update-pwd','AdminController@updatePassword');
-	
+	Route::match(['get','post'],'account','UsersController@account');
 	Route::match(['get','post'],'/admin/add-category','CategoryController@addCategory');
 	Route::get('/admin/view-categories','CategoryController@viewCategories');
 	Route::match(['get','post'],'/admin/edit-category/{id}','CategoryController@editCategory');

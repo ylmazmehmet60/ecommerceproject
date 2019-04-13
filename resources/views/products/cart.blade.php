@@ -75,17 +75,18 @@
 <section id="do_action">
 	<div class="container">
 		<div class="heading">
-			<h3>Ne yapmak istiyorsunuz?</h3>
-			<p>Kupon Kodunuz Varsa Kullanabilirsiniz</p>
+			<p>Toplam Ödemeniz Gereken Miktar</p>
 		</div>
 		<div class="row">
-			<div class="col-sm-6">
-				<div class="chose_area">
-
+			<div class="col-sm-12">
+				<div class="total_area" style="margin-bottom: 10px;">
+					<ul>
+						<li>Toplam <span>$ <?php echo $total_amount; ?></span></li>
+						
+					</ul>
+					
 				</div>
-			</div>
-			<div class="col-sm-6">
-
+				<a class="btn btn-default check_out pull-right" href="{{ url('/checkout') }}">Ödeme Yap</a>
 			</div>
 		</div>
 	</div>
