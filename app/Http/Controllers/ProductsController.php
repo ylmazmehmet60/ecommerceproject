@@ -400,6 +400,10 @@ class ProductsController extends Controller{
         }
     }
 	
+	 public function checkout(Request $request){
+    
+        return view('products.checkout');
+    }
 
 
     
